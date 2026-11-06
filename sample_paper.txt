@@ -1,0 +1,25 @@
+PART A (Answer all questions, 3 marks each)
+1. Define an algorithm. List its characteristics. (3) CO1
+2. Differentiate between a compiler and an interpreter. (3) CO1
+3. Explain the use of the break statement with an example. (3) CO2
+4. What is a pointer? (3) CO3
+5. Write a program to find the largest of three numbers. (3) CO2
+6. Compare call by value and call by reference. (3) CO3
+PART B
+Module 1
+7 a) Draw a flowchart to find the sum of the digits of a number. (6) CO1
+b) Explain the structure of a C program. (8) CO1
+OR
+8 a) Describe the different data types in C with their sizes. (8) CO1
+b) Evaluate the expression 5 + 3 * 2 % 4 - 1 and show each step. (6) CO1
+Module 2
+9 a) Write a program to sort an array using bubble sort. (8) CO2
+b) Trace the execution of the program for the input 5 3 8 1. (6) CO2
+OR
+10 a) Explain nested loops with a suitable example. (7) CO2
+b) Justify the choice of a while loop over a for loop when the number of iterations is unknown. (7) CO2
+Module 3
+11 a) Design a structure to store student records and write functions to read and display them. (14) CO4
+OR
+12 a) Analyse the following code segment and identify the errors. (8) CO3
+b) Explain dynamic memory allocation using malloc() and free(). (6) CO3
