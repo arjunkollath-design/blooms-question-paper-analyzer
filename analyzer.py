@@ -414,7 +414,8 @@ def suggestions(df: pd.DataFrame, s: Summary, lower_max: float, higher_min: floa
 # Excel report
 # --------------------------------------------------------------------------
 def excel_report(df: pd.DataFrame, s: Summary, meta: dict, lower_max: float,
-                 higher_min: float, co_count: int) -> bytes:
+                 higher_min: float, co_count: int, logo_path: str | None = None,
+                 institution: str = "Vidya Academy of Science & Technology") -> bytes:
     from openpyxl.chart import BarChart, Reference
     from openpyxl.styles import Font, PatternFill, Alignment
 
@@ -470,6 +471,19 @@ def excel_report(df: pd.DataFrame, s: Summary, meta: dict, lower_max: float,
         chart.set_categories(Reference(lv, min_col=2, min_row=2, max_row=7))
         chart.height, chart.width = 8, 16
         lv.add_chart(chart, "G2")
+
+        summ = wb["Summary"]
+        summ["D2"] = institution
+        summ["D2"].font = Font(bold=True, size=13, color="16233D")
+        summ["D3"] = "Bloom's taxonomy question paper analysis"
+        if logo_path:
+            try:
+                from openpyxl.drawing.image import Image as XLImage
+                img = XLImage(logo_path)
+                img.anchor = "D5"
+                summ.add_image(img)
+            except Exception:  # noqa: BLE001  (Pillow missing or bad image: skip the logo)
+                pass
     return buf.getvalue()
 
 

@@ -20,6 +20,7 @@ from analyzer import (
 
 # ---- Edit these for your institution -------------------------------------
 INSTITUTION = "Vidya Academy of Science & Technology"
+LOGO = Path(__file__).parent / "vidya_logo.png"   # replace this file to change the logo
 DEPARTMENTS = ["CSE", "ECE", "EEE", "ME", "CE", "AI & DS",
                "Science & Humanities", "Other"]
 # ---------------------------------------------------------------------------
@@ -59,8 +60,15 @@ with st.sidebar:
 
 weigh_by_marks = weigh == "Marks"
 
-st.title("Bloom's question paper analyzer")
-st.caption(f"{INSTITUTION} · question paper quality dashboard")
+if LOGO.exists():
+    st.logo(str(LOGO), size="large")
+    h_logo, h_text = st.columns([1, 9], vertical_alignment="center")
+    h_logo.image(str(LOGO), width="stretch")
+else:
+    h_text = st.container()
+with h_text:
+    st.title("Bloom's question paper analyzer")
+    st.caption(f"{INSTITUTION} · question paper quality dashboard")
 
 tab_paper, tab_dept, tab_verbs = st.tabs(
     ["Analyse a paper", "Department dashboard", "Verb lists"])
@@ -223,7 +231,8 @@ with tab_paper:
         d1, d2, d3 = st.columns(3)
         d1.download_button(
             "Download Excel report",
-            excel_report(edited, s, meta, lower_max, higher_min, int(co_count)),
+            excel_report(edited, s, meta, lower_max, higher_min, int(co_count),
+                         logo_path=str(LOGO) if LOGO.exists() else None),
             file_name=f"blooms_{fname}.xlsx", type="primary", width="stretch",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         d2.download_button("Download questions (CSV)", edited.to_csv(index=False).encode(),
